@@ -12,14 +12,16 @@ public class KeyInputHandler {
     @SubscribeEvent
     public void onKeyInput(InputEvent.KeyInputEvent event){
         if (Keybinds.enable.isPressed()) {
-            System.out.println("ENABLE IS PRESSED");
+            //System.out.println("ENABLE IS PRESSED");
             IMana cap = Mana.getFromPlayer(mc.player);
             cap.setMana(100);
+            cap.setMaxMana(0);
         }
 
         if (Keybinds.disable.isPressed()) {
             IMana cap = Mana.getFromPlayer(mc.player);
-            System.out.println("STUFF GOES HERE "+cap.getMana());
+            System.out.println("MANA GOES HERE "+cap.getMana());
+            System.out.println("MAXMANA GOES HERE "+cap.getMaxMana());
         }
     }
 }

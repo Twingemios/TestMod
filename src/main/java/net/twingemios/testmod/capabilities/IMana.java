@@ -1,5 +1,7 @@
 package net.twingemios.testmod.capabilities;
 
+import net.minecraft.entity.player.PlayerEntity;
+
 public interface IMana {
     int getMana();
 
@@ -9,4 +11,5 @@ public interface IMana {
 
     void setMaxMana(int v1);
 
+    //void synchronise(PlayerEntity player);
 }

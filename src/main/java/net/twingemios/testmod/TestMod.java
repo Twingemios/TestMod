@@ -20,6 +20,7 @@ import org.apache.logging.log4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod("testmod")
+@Mod.EventBusSubscriber(modid = "testmod", bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class TestMod
 {
     // Directly reference a log4j logger.
@@ -32,14 +33,13 @@ public class TestMod
 
     private void setup(FMLCommonSetupEvent event) {
         CapabilityManager.INSTANCE.register(IMana.class, new ManaStorage(), Mana::new);
+        PacketManager.register();
+
         Keybinds.register();
         MinecraftForge.EVENT_BUS.register(new KeyInputHandler());
     }
 
-    @SubscribeEvent
-    public void attachCapabilitiesEntity(final AttachCapabilitiesEvent<Entity> event) {
-        event.addCapability(new ResourceLocation("testmod", "magic"), new ManaCapability());
-    }
+
 
 
 }
