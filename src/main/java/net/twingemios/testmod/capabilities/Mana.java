@@ -14,23 +14,10 @@ import java.util.Collections;
 
 public class Mana implements IMana {
 
-    private byte version;
     private int whiteMana;
 
     public Mana() {
-        this.version = (byte) 1;
-    }
 
-    /**
-     * Version
-     */
-    @Override
-    public byte getVersion() {
-        return version;
-    }
-    @Override
-    public void setVersion(byte version) {
-        this.version = version;
     }
 
     /**
@@ -51,9 +38,12 @@ public class Mana implements IMana {
         this.whiteMana += amount;
     }
 
+    
+
+
+
     @Override
     public void copy(IMana other) {
-        this.setVersion(other.getVersion());
         this.setWhiteMana(other.getWhiteMana());
     }
 

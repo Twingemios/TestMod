@@ -34,24 +34,7 @@ public class Events {
 
         // Initial Setup
         System.out.println("THIS DO BE RUNNIN");
-        if (cap.getVersion() == 1) {
-
-            // Search for Old Data
-            CompoundNBT data = player.getEntity().getPersistentData();
-            System.out.println("THIS IS RUN");
-            if (data.contains("testMod")) {
-                System.out.println("IS THIS EVER RUN??");
-
-                CompoundNBT tag = data.getCompound("testMod");
-                cap.setWhiteMana(tag.getInt("white_mana"));
-
-
-                // Remove Old Data
-                data.remove("testMod");
-            }
-
-            cap.setVersion((byte) 2);
-        }
+        CompoundNBT data = player.getEntity().getPersistentData();
     }
 
     @SubscribeEvent
