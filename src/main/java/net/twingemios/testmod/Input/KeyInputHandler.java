@@ -20,11 +20,12 @@ public class KeyInputHandler {
     @SubscribeEvent
     public void onKeyInput(InputEvent.KeyInputEvent event) throws CommandSyntaxException {
         if (Keybinds.enable.isPressed()) {
-            //System.out.println("ENABLE IS PRESSED");
+            System.out.println("ENABLE IS PRESSED");
             IMana cap = Mana.getFromPlayer(mc.player);
             cap.setMana(69);
             cap.setMaxMana(100);
-            PacketManager.sendToServer(new SyncManaPacket(mc.player.getEntityId(),(CompoundNBT) ManaCapability.CAPABILITY.writeNBT(cap, null)));
+            Mana.updateClient(mc.getIntegratedServer().getPlayerList().getPlayerByUUID(mc.player.getUniqueID()), cap);
+
         }
 
         if (Keybinds.disable.isPressed()) {
