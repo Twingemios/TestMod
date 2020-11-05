@@ -9,7 +9,7 @@ public interface IMana {
 
     int getMaxMana();
 
-    void setMaxMana(int v1);
+    void setMaxMana(int v2);
 
     //void synchronise(PlayerEntity player);
 }

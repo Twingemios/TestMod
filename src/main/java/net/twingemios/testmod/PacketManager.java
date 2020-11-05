@@ -17,10 +17,12 @@ public class PacketManager {
         INSTANCE.registerMessage(id++, SyncManaPacket.class, SyncManaPacket::encode, SyncManaPacket::decode, SyncManaPacket::handle);
     }
 
+    //Client -> Server
     public static void sendToServer(Object msg) {
         INSTANCE.sendToServer(msg);
     }
 
+    //Server -> Client
     public static void sendTo(ServerPlayerEntity player, Object msg) {
         INSTANCE.sendTo(msg, player.connection.netManager, NetworkDirection.PLAY_TO_CLIENT);
     }

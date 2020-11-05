@@ -13,7 +13,7 @@ import net.twingemios.testmod.packets.SyncManaPacket;
 import java.util.Collections;
 
 public class Mana implements IMana{
-    private int mana = 10;
+    private int mana = 12;
     private int maxMana = 100;
     @Override
     public int getMana() {
@@ -22,7 +22,7 @@ public class Mana implements IMana{
 
     @Override
     public void setMana(int mana) {
-        this.mana=maxMana;
+        this.mana=mana;
     }
 
     @Override

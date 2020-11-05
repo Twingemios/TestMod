@@ -21,6 +21,9 @@ public class ManaStorage implements Capability.IStorage<IMana>{
     public void readNBT(Capability<IMana> capability, IMana instance, Direction side, INBT nbt) {
         CompoundNBT tag = (CompoundNBT) nbt;
         instance.setMana(tag.getInt("mana"));
+        System.out.println("TAG GOT MANA AS "+tag.getInt("mana"));
         instance.setMaxMana(tag.getInt("max_mana"));
+        System.out.println("TAG GOT MAX MANA AS "+tag.getInt("mana_max"));
+
     }
 }
