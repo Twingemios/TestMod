@@ -12,46 +12,57 @@ import net.twingemios.testmod.packets.SyncManaPacket;
 
 import java.util.Collections;
 
-public class Mana implements IMana{
-    private int mana = 12;
-    private int maxMana = 100;
-    @Override
-    public int getMana() {
-        return mana;
+public class Mana implements IMana {
+
+    private byte version;
+    private int whiteMana;
+
+    public Mana() {
+        this.version = (byte) 1;
     }
 
-    @Override
-    public void setMana(int mana) {
-        this.mana=mana;
-    }
-
-    @Override
-    public int getMaxMana() {
-        return maxMana;
-    }
-
-    @Override
-    public void setMaxMana(int maxMana) {
-        this.maxMana=maxMana;
-    }
-    /*
-    @Override
-    public void synchronise(PlayerEntity player) {
-        if (!player.getEntityWorld().isRemote) {
-            //SEntityPropertiesPacket packet = new SEntityPropertiesPacket(player.getEntityId(), Collections.singleton(attribute));
-            //((ServerWorld) player.getEntityWorld()).getChunkProvider().sendToTrackingAndSelf(player, packet);
-        }
-    }
-
+    /**
+     * Version
      */
+    @Override
+    public byte getVersion() {
+        return version;
+    }
+    @Override
+    public void setVersion(byte version) {
+        this.version = version;
+    }
+
+    /**
+     * White Mana
+     */
+    @Override
+    public int getWhiteMana() {
+        return whiteMana;
+    }
+
+    @Override
+    public void setWhiteMana(int amount) {
+        this.whiteMana = amount;
+    }
+
+    @Override
+    public void addWhiteMana(int amount) {
+        this.whiteMana += amount;
+    }
+
+    @Override
+    public void copy(IMana other) {
+        this.setVersion(other.getVersion());
+        this.setWhiteMana(other.getWhiteMana());
+    }
 
     public static IMana getFromPlayer(PlayerEntity player) {
         return player.getCapability(ManaCapability.CAPABILITY, null).orElseThrow(() -> new IllegalArgumentException("LazyOptional must not be empty!"));
     }
 
-
-
     public static void updateClient(ServerPlayerEntity player, IMana cap) {
         PacketManager.sendTo(player, new SyncManaPacket(player.getEntityId(), (CompoundNBT) ManaCapability.CAPABILITY.writeNBT(cap, null)));
     }
+
 }

@@ -3,13 +3,16 @@ package net.twingemios.testmod.capabilities;
 import net.minecraft.entity.player.PlayerEntity;
 
 public interface IMana {
-    int getMana();
 
-    void setMana(int v1);
+    byte getVersion();
+    void setVersion(byte version);
 
-    int getMaxMana();
+    int getWhiteMana();
+    void setWhiteMana(int amount);
+    void addWhiteMana(int amount);
 
-    void setMaxMana(int v2);
+    void copy(IMana other);
 
     //void synchronise(PlayerEntity player);
+
 }

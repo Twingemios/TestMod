@@ -1,5 +1,6 @@
 package net.twingemios.testmod.packets;
 
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
@@ -12,6 +13,7 @@ import net.twingemios.testmod.capabilities.ManaCapability;
 import java.util.function.Supplier;
 
 public class SyncManaPacket {
+
     private final CompoundNBT nbt;
 
     public SyncManaPacket(int entityId, CompoundNBT nbt) {
@@ -43,4 +45,5 @@ public class SyncManaPacket {
         });
         ctx.get().setPacketHandled(true);
     }
+
 }

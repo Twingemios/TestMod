@@ -10,20 +10,25 @@ import net.twingemios.testmod.packets.SyncManaPacket;
 public class PacketManager {
 
     private static final String PROTOCOL_VERSION = "1";
-    public static final SimpleChannel INSTANCE = NetworkRegistry.newSimpleChannel(new ResourceLocation("testmod", "packetmanager"), () -> PROTOCOL_VERSION, PROTOCOL_VERSION::equals, PROTOCOL_VERSION::equals);
+    public static final SimpleChannel INSTANCE = NetworkRegistry.newSimpleChannel(new ResourceLocation(TestMod.MOD_ID, "packetmanager"), () -> PROTOCOL_VERSION, PROTOCOL_VERSION::equals, PROTOCOL_VERSION::equals);
 
     public static void register() {
         int id = 0;
         INSTANCE.registerMessage(id++, SyncManaPacket.class, SyncManaPacket::encode, SyncManaPacket::decode, SyncManaPacket::handle);
     }
 
-    //Client -> Server
+    /**
+     * Packet client -> server
+     */
     public static void sendToServer(Object msg) {
         INSTANCE.sendToServer(msg);
     }
 
-    //Server -> Client
+    /**
+     * Packet server -> player
+     */
     public static void sendTo(ServerPlayerEntity player, Object msg) {
         INSTANCE.sendTo(msg, player.connection.netManager, NetworkDirection.PLAY_TO_CLIENT);
     }
+
 }
